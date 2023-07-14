@@ -1,4 +1,9 @@
 package com.dar.tec.env.persistence.repository;
 
-public class UserRepo {
+import com.dar.tec.env.persistence.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface UserRepo extends JpaRepository<User, UUID> {
 }

@@ -1,4 +1,9 @@
 package com.dar.tec.env.persistence.repository;
 
-public class CategoryRepo {
+import com.dar.tec.env.persistence.entity.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface CategoryRepo extends JpaRepository<Category, UUID> {
 }
