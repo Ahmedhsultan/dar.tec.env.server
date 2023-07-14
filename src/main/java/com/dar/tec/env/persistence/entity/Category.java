@@ -19,6 +19,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
+    @Column(unique = true)
     private String name;
     @OneToMany(mappedBy = "category")
     private Set<Plugin> plugins = new HashSet<>();
