@@ -7,6 +7,7 @@ import com.dar.tec.env.persistence.repository.CategoryRepo;
 import jakarta.persistence.PersistenceException;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.UUID;
 
 @Service
@@ -22,8 +23,14 @@ public class CategoryService extends BaseService<CategoryRepo, UUID, CategoryDTO
 
         try {
             categoryRepo.save(category);
-        }catch (PersistenceException persistenceException){
-            persistenceException.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+
+            //Check duplication of this name
+            if (e.getMessage().contains("Duplicate entry"))
+                throw new CreationException("This category is existed!!");
+
+            //Throw for other reason
             throw new CreationException("Can't add the new category!!");
         }
     }

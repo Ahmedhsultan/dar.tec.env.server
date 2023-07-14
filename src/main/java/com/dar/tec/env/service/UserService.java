@@ -7,7 +7,6 @@ import com.dar.tec.env.exception.CreationException;
 import com.dar.tec.env.exception.UserException;
 import com.dar.tec.env.persistence.entity.User;
 import com.dar.tec.env.persistence.repository.UserRepo;
-import jakarta.persistence.PersistenceException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +25,14 @@ public class UserService extends BaseService<UserRepo, UUID, UserDTOResp>{
         User user = modelMapper.map(userDTOReq, User.class);
         try {
             userRepo.save(user);
-        }catch (PersistenceException persistenceException){
-            persistenceException.printStackTrace();
+        }catch (Exception e){
+            e.printStackTrace();
+
+            //Check duplication of this name
+            if (e.getMessage().contains("Duplicate entry"))
+                throw new CreationException("This username is existed!!");
+
+            //Throw for other reason
             throw new CreationException("Failed to sign up");
         }
     }
@@ -35,7 +40,11 @@ public class UserService extends BaseService<UserRepo, UUID, UserDTOResp>{
         Optional<User> userOptional = userRepo.findByUserName(userCredintialsDTO.userName());
         if (!userOptional.isPresent())
             throw new UserException("Credential is wrong!!");
-        if (!userOptional.get().getPassword().equals(userCredintialsDTO.password()))
+        if (!isPasswordsEquals(userCredintialsDTO, userOptional))
             throw new UserException("Credential is wrong!!");
+    }
+
+    private static boolean isPasswordsEquals(UserCredintialsDTO userCredintialsDTO, Optional<User> userOptional) {
+        return userOptional.get().getPassword().equals(userCredintialsDTO.password());
     }
 }
