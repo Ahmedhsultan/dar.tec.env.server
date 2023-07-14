@@ -3,6 +3,7 @@ package com.dar.tec.env.service;
 import com.dar.tec.env.dto.req.UserCredintialsDTO;
 import com.dar.tec.env.dto.req.UserDTOReq;
 import com.dar.tec.env.dto.resp.UserDTOResp;
+import com.dar.tec.env.exception.CreationException;
 import com.dar.tec.env.exception.UserException;
 import com.dar.tec.env.persistence.entity.User;
 import com.dar.tec.env.persistence.repository.UserRepo;
@@ -27,7 +28,7 @@ public class UserService extends BaseService<UserRepo, UUID, UserDTOResp>{
             userRepo.save(user);
         }catch (PersistenceException persistenceException){
             persistenceException.printStackTrace();
-            throw new UserException("Failed to sign up");
+            throw new CreationException("Failed to sign up");
         }
     }
     public void login(UserCredintialsDTO userCredintialsDTO){
