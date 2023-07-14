@@ -21,6 +21,6 @@ public class Category {
     private UUID uuid;
     @Column(unique = true)
     private String name;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Plugin> plugins = new HashSet<>();
 }

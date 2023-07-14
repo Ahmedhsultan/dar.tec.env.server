@@ -4,10 +4,8 @@ import com.dar.tec.env.dto.resp.CategoryDTOResp;
 import com.dar.tec.env.exception.CreationException;
 import com.dar.tec.env.persistence.entity.Category;
 import com.dar.tec.env.persistence.repository.CategoryRepo;
-import jakarta.persistence.PersistenceException;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.UUID;
 
 @Service

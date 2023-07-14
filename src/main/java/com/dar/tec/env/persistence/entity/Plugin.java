@@ -17,6 +17,8 @@ public class Plugin {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
-    @ManyToOne
-    private Category category;
+    @Column(unique = true)
+    private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Script script;
 }
