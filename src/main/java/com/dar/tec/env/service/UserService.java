@@ -37,7 +37,7 @@ public class UserService extends BaseService<UserRepo, UUID, UserDTOResp>{
         }
     }
     public void login(UserCredintialsDTO userCredintialsDTO){
-        Optional<User> userOptional = userRepo.findByUserName(userCredintialsDTO.userName());
+        Optional<User> userOptional = userRepo.findByEmail(userCredintialsDTO.email());
         if (!userOptional.isPresent())
             throw new UserException("Credential is wrong!!");
         if (!isPasswordsEquals(userCredintialsDTO, userOptional))
