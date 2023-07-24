@@ -12,6 +12,7 @@ import com.dar.tec.env.persistence.repository.PluginRepo;
 import com.dar.tec.env.persistence.repository.ScriptRepo;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -57,7 +58,7 @@ public class PluginService extends BaseService<PluginRepo, UUID, PluginDTOResp> 
             //Creat new script
             Script script = new Script();
             script.setDescription(pluginDTOReq.description());
-            script.setVideoURL(pluginDTOReq.videoURL());
+            //script.setVideoURL(pluginDTOReq.file());
             script.setExcutedcodeURL(pluginDTOReq.excutedcodeURL());
 
             //Add script to plugin

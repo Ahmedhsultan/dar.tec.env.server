@@ -22,7 +22,7 @@ public class Script {
     @Column(unique = true, name = "excutedcode_url")
     private String excutedcodeURL;
     @Column(unique = true, name = "video_url")
-    private String videoURL;
+    private byte[] videoURL;
     @Column(length = 1000)
     private String description;
 }

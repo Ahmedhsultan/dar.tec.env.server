@@ -21,6 +21,7 @@ public class Category {
     private UUID uuid;
     @Column(unique = true)
     private String name;
+    private String icon = "build";
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Plugin> plugins = new HashSet<>();
 }

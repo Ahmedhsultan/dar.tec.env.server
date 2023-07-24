@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.MediaType;
+
 @Controller
 @RequestMapping("plugin")
 public class PluginController extends BaseController<UUID, PluginService, PluginDTOResp>{
@@ -27,7 +29,7 @@ public class PluginController extends BaseController<UUID, PluginService, Plugin
         return ResponseEntity.ok(plugins);
     }
 
-    @PostMapping("add")
+    @PostMapping(value = "add")
     public ResponseEntity add(@RequestBody PluginDTOReq pluginDTOReq){
         pluginService.add(pluginDTOReq);
 

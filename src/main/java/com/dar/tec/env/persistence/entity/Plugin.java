@@ -19,6 +19,7 @@ public class Plugin {
     private UUID uuid;
     @Column(unique = true)
     private String name;
+    private byte[] image;
     @ManyToOne(cascade = CascadeType.ALL)
     private Script script;
 }

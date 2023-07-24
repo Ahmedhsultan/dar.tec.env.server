@@ -10,5 +10,6 @@ import java.util.UUID;
 public class CategoryDTOResp {
     private UUID uuid;
     private String name;
+    private String icon;
     private Set<Plugin> plugins;
 }
